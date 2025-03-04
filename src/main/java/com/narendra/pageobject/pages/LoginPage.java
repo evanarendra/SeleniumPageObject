@@ -26,9 +26,18 @@ public class LoginPage {
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement btnSubmit;
 
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/div/div[1]/div[1]/p")
+    private WebElement msgError;
+
     public void login(String username, String password) {
         this.username.sendKeys(username);
         this.password.sendKeys(password);
         btnSubmit.click();
+//        this.username.getAttribute("required");
+    }
+
+    //Actual Result
+    public String msgInvalid() {
+        return msgError.getText();
     }
 }
