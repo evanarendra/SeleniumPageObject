@@ -29,6 +29,9 @@ public class LoginPage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/div/div[1]/div[1]/p")
     private WebElement msgError;
 
+    @FindBy(xpath = "//span[@class='oxd-text oxd-text--span oxd-main-menu-item--name'][normalize-space()='Dashboard']")
+    private WebElement btnDashboard;
+
     public void login(String username, String password) {
         this.username.sendKeys(username);
         this.password.sendKeys(password);
@@ -39,5 +42,9 @@ public class LoginPage {
     //Actual Result
     public String msgInvalid() {
         return msgError.getText();
+    }
+
+    public String getTxtDashboardMenu() {
+        return btnDashboard.getText();
     }
 }

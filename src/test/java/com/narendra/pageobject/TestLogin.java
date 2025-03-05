@@ -29,11 +29,19 @@ public class TestLogin {
         loginPage = new LoginPage();
     }
     @Test
-    public void testLogin() {
+    public void testInvalidLogin() {
         delay(3);
         loginPage.login("Admin","admin1234");
         delay(3);
         assertEquals(loginPage.msgInvalid(), "Invalid credentials");
+    }
+
+    @Test
+    public void testValidLogin() {
+        delay(3);
+        loginPage.login("Admin","admin123");
+        delay(3);
+        assertEquals(loginPage.getTxtDashboardMenu(), "Dashboard");
     }
 
     @AfterClass
