@@ -2,6 +2,7 @@ package com.narendra.pageobject;
 
 import com.narendra.pageobject.driver.DriverSingleton;
 import com.narendra.pageobject.pages.LoginPage;
+import com.narendra.pageobject.pages.LoginSiloam;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -10,39 +11,31 @@ import org.testng.annotations.Test;
 
 import static junit.framework.Assert.assertEquals;
 
-public class TestLogin {
+public class TestLoginSiloam {
 
     public static WebDriver driver;
-    private LoginPage loginPage;
+    private LoginSiloam loginSiloam;
 
     @BeforeClass
     public void setUp() {
         DriverSingleton.getInstance("Chrome");
         driver = DriverSingleton.getDriver();
-        String url = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
+        String url = "https://dev.ptdika.com/siloam/panel/login";
         driver.get(url);
     }
 
     @BeforeMethod
     public void pageObject() {
-        loginPage = new LoginPage();
+        loginSiloam = new LoginSiloam();
     }
-
     @Test
     public void testInvalidLogin() {
         delay(3);
-        loginPage.login("Admin","admin1234");
+        loginSiloam.login("Admin","admin1234");
         delay(3);
-        assertEquals(loginPage.msgInvalid(), "Invalid credentials");
+        System.out.println(loginSiloam.getAttributeRequired());
     }
 
-    @Test
-    public void testValidLogin() {
-        delay(3);
-        loginPage.login("Admin","admin123");
-        delay(3);
-        assertEquals(loginPage.getTxtDashboardMenu(), "Dashboard");
-    }
 
     @AfterClass
     public void closeBrowser() {

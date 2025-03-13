@@ -2,7 +2,9 @@ package com.narendra.pageobject;
 
 import com.narendra.pageobject.driver.DriverSingleton;
 import com.narendra.pageobject.pages.LoginPage;
+import com.narendra.pageobject.pages.SampleFrame;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -10,38 +12,28 @@ import org.testng.annotations.Test;
 
 import static junit.framework.Assert.assertEquals;
 
-public class TestLogin {
+public class TestFrame {
 
     public static WebDriver driver;
-    private LoginPage loginPage;
+    private SampleFrame sampleFrame;
 
     @BeforeClass
     public void setUp() {
         DriverSingleton.getInstance("Chrome");
         driver = DriverSingleton.getDriver();
-        String url = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
+        String url = "https://demoqa.com/frames";
         driver.get(url);
     }
 
     @BeforeMethod
     public void pageObject() {
-        loginPage = new LoginPage();
+        sampleFrame = new SampleFrame();
     }
 
     @Test
-    public void testInvalidLogin() {
-        delay(3);
-        loginPage.login("Admin","admin1234");
-        delay(3);
-        assertEquals(loginPage.msgInvalid(), "Invalid credentials");
-    }
-
-    @Test
-    public void testValidLogin() {
-        delay(3);
-        loginPage.login("Admin","admin123");
-        delay(3);
-        assertEquals(loginPage.getTxtDashboardMenu(), "Dashboard");
+    public void testFrame() {
+        System.out.println(sampleFrame.getTxtOutFrame());
+        System.out.println(sampleFrame.getTxtFrame());
     }
 
     @AfterClass
